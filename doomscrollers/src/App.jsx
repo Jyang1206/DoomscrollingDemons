@@ -23,18 +23,23 @@ export function App(props) {
   }, []);
 
   return (
-    <view className="App">
-      {isLoading && (
-        <view>
+    <view>
+      {!isLoading && (
+        <view className="App">
           {" "}
           <text className="Title">🪄 Create your video with AI!</text>
           <RowInput numRows={numRows} />
           <view bindtap={(e) => setNumRows(numRows + 1)} className="Button">
             <text className="AddButton">+ Add Row</text>
           </view>
-          <view bindtap={(e) => setNumRows(numRows + 1)} className="Button">
+          <view bindtap={(e) => setIsLoading(true)} className="Button">
             <text className="AddButton">Submit</text>
           </view>
+        </view>
+      )}
+      {isLoading && (
+        <view className="App">
+          <text>Loading...</text>
         </view>
       )}
     </view>
